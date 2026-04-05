@@ -1,0 +1,4 @@
+﻿User-agent: *
+Allow: /
+
+Sitemap: https://shekharkumarhonhey123-oss.github.io/s-edits-portfolio/sitemap.xml
