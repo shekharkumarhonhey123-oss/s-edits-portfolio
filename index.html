@@ -1,0 +1,628 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>S-EDITS STUDIO - Video Editor Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --accent: #23b8e8;
+      --accent-deep: #179cc8;
+      --ink: #0a0f14;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; overflow-x: hidden; background: radial-gradient(circle at 10% 10%, #ecf9ff 0, #ffffff 35%, #f6fbff 100%); }
+
+    header { position: fixed; top: 0; width: 100%; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 1rem 0; transition: all 0.3s ease; }
+    nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+    .logo { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 700; font-size: 1.05rem; letter-spacing: 0.4px; }
+    .logo-img { width: 44px; height: 44px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35); }
+
+    .nav-links { display: flex; list-style: none; gap: 2rem; }
+    .nav-links a { color: #fff; text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+    .nav-links a:hover { color: #48d7ff; }
+    .nav-social {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-left: 1.2rem;
+    }
+    .nav-social a {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.14);
+      transition: all 0.25s ease;
+    }
+    .nav-social a:hover {
+      background: rgba(72, 215, 255, 0.28);
+      transform: translateY(-2px);
+      color: #c8f3ff;
+    }
+
+    .hamburger { display: none; flex-direction: column; cursor: pointer; }
+    .hamburger span { width: 25px; height: 3px; background: #fff; margin: 3px 0; transition: 0.3s; }
+
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=2070&q=80');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      filter: blur(10px);
+      background: radial-gradient(circle, rgba(72, 215, 255, 0.35) 0%, rgba(72, 215, 255, 0) 70%);
+      animation: drift 9s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .hero::before { top: 8%; left: 5%; }
+    .hero::after { right: 5%; bottom: 8%; animation-delay: -4s; }
+
+    .hero-content h1 { font-size: 4rem; font-weight: 700; margin-bottom: 1rem; animation: fadeInUp 1s ease; }
+    .hero-content p { font-size: 1.3rem; margin-bottom: 2rem; max-width: 700px; animation: fadeInUp 1s ease 0.2s both; }
+
+    .cta-button { display: inline-block; background: var(--accent); color: white; padding: 1rem 2.5rem; text-decoration: none; border-radius: 50px; font-weight: 600; transition: all 0.3s ease; animation: fadeInUp 1s ease 0.4s both; border: none; position: relative; overflow: hidden; }
+    .cta-button:hover { background: var(--accent-deep); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(35, 184, 232, 0.4); }
+    .cta-button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -140%;
+      width: 120%;
+      height: 100%;
+      background: linear-gradient(110deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.35) 50%, rgba(255,255,255,0) 100%);
+      transition: left .6s ease;
+    }
+    .cta-button:hover::before { left: 140%; }
+
+    section { padding: 100px 0; max-width: 1200px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; scroll-margin-top: 100px; }
+    .section-title { text-align: center; font-size: 3rem; font-weight: 700; margin-bottom: 1.2rem; color: #222; }
+    .section-subtitle { text-align: center; font-size: 1.1rem; color: #666; max-width: 700px; margin: 0 auto 3rem; }
+    .hq-note {
+      text-align: center;
+      margin: -1.8rem auto 2rem;
+      color: #0d3b4d;
+      font-weight: 600;
+      font-size: 0.98rem;
+    }
+    .hq-note a {
+      color: var(--accent-deep);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(23, 156, 200, 0.6);
+    }
+    .hq-note a:hover { color: #0e6f8f; }
+
+    .about { background: #f8fbfc; }
+    .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-text h3 { font-size: 2rem; margin-bottom: 1rem; color: #23b8e8; }
+    .about-text p { margin-bottom: 1.5rem; color: #666; }
+
+    .skills { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .skill-tag { background: #23b8e8; color: white; padding: 0.5rem 1.2rem; border-radius: 25px; font-size: 0.9rem; font-weight: 500; }
+
+    .portfolio-carousel {
+      position: relative;
+      margin-top: 3rem;
+    }
+    .carousel-controls {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .carousel-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: none;
+      background: #0f2431;
+      color: #fff;
+      cursor: pointer;
+      font-size: 1.05rem;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .carousel-btn:hover { background: #1b3e52; transform: translateY(-2px); }
+    .portfolio-grid {
+      display: flex;
+      gap: 1.2rem;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      scroll-behavior: smooth;
+      padding-bottom: 0.4rem;
+    }
+    .portfolio-grid::-webkit-scrollbar { display: none; }
+    .portfolio-item { position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transition: transform 0.35s ease, box-shadow 0.35s ease; height: 250px; width: 360px; flex: 0 0 360px; background: #000; transform-style: preserve-3d; scroll-snap-align: start; }
+    .portfolio-item.wide-item { width: 560px; flex-basis: 560px; }
+    .portfolio-item:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
+
+    .portfolio-video { width: 100%; height: 100%; object-fit: cover; }
+    .sample-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.05) contrast(1.05);
+      transform: scale(1.03);
+      transition: transform 0.35s ease;
+    }
+    .portfolio-item:hover .sample-thumb { transform: scale(1.08); }
+    .play-overlay {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: rgba(35, 184, 232, 0.9); width: 80px; height: 80px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; opacity: 0; transition: all 0.3s ease; pointer-events: none;
+    }
+    .portfolio-item:hover .play-overlay { opacity: 1; }
+    .play-overlay i { color: white; font-size: 1.5rem; margin-left: 5px; }
+    .portfolio-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0.85rem 1rem;
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+      pointer-events: none;
+      z-index: 2;
+    }
+    .sample-link {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 3;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      color: #fff;
+      text-decoration: none;
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(6px);
+    }
+    .sample-link:hover { background: rgba(35, 184, 232, 0.7); }
+    .portfolio-item.tapped {
+      transform: scale(0.98);
+      box-shadow: 0 12px 26px rgba(0,0,0,0.25);
+    }
+
+    .floating-logo {
+      position: absolute;
+      width: 90px;
+      aspect-ratio: 1;
+      opacity: 0.22;
+      filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.35));
+      animation: floatY 5s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .floating-logo.one { top: 120px; right: 3%; animation-delay: -1.5s; }
+    .floating-logo.two { top: 40%; left: 2%; animation-delay: -3s; }
+    .floating-logo.three { bottom: 120px; right: 4%; width: 70px; animation-delay: -2s; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px) scale(0.98);
+      transition: opacity .75s ease, transform .75s ease;
+    }
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0;
+      z-index: 2000;
+      background: linear-gradient(90deg, #23b8e8, #48d7ff);
+      box-shadow: 0 0 12px rgba(72, 215, 255, 0.8);
+    }
+
+    .contact { background: linear-gradient(135deg, #0e1e2d 0%, #224e68 100%); color: white; }
+    .contact-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .contact-info h3 { font-size: 2rem; margin-bottom: 2rem; }
+    .contact-item { display: flex; align-items: center; margin-bottom: 1.5rem; }
+    .contact-item i { font-size: 1.4rem; margin-right: 1rem; color: #48d7ff; width: 30px; }
+    .social-links {
+      margin-top: 1.2rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .social-links h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      color: #ffffff;
+    }
+    .social-links a {
+      color: #c8f3ff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .social-links a:hover { color: #ffffff; }
+
+    .contact-form { background: rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px); }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group input, .form-group textarea { width: 100%; padding: 1rem; border: none; border-radius: 10px; background: rgba(255,255,255,0.95); font-family: inherit; }
+    .form-group textarea { height: 120px; resize: vertical; }
+
+    footer { background: #101010; color: white; text-align: center; padding: 2rem; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(18px, -16px); }
+    }
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        position: fixed; left: -100%; top: 78px; flex-direction: column; background-color: #000;
+        width: 100%; text-align: center; transition: 0.3s; padding: 2rem 0;
+      }
+      .nav-links.active { left: 0; }
+      .nav-social { margin-left: 0.5rem; }
+      .hero-content h1 { font-size: 2.4rem; }
+      .about-content, .contact-content { grid-template-columns: 1fr; gap: 2rem; }
+      .portfolio-item,
+      .portfolio-item.wide-item { width: 90%; flex-basis: 90%; }
+      section { padding: 70px 2rem; }
+      .logo { font-size: 0.95rem; }
+      .logo-img { width: 38px; height: 38px; }
+      .floating-logo { width: 64px; opacity: 0.16; }
+      .floating-logo.two { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-indicator" id="scrollIndicator"></div>
+  <header>
+    <nav>
+      <a href="#home" class="logo">
+        <img src="./assets/logo.png" alt="S-EDITS STUDIO Logo" class="logo-img" />
+        <span>S-EDITS STUDIO</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-social">
+        <a href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/search/top?q=shekhar%20kumar" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      </div>
+      <div class="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <img class="floating-logo one" src="./assets/logo.png" alt="" aria-hidden="true" />
+    <div class="hero-content reveal">
+      <h1>Professional Video Editor</h1>
+      <p>Transforming your vision into cinematic reality. Specializing in reels, social media content, cinematic edits, and commercial videos.</p>
+      <a href="#portfolio" class="cta-button">View My Work</a>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <img class="floating-logo two" src="./assets/logo.png" alt="" aria-hidden="true" />
+    <div class="reveal">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">Crafting stories that captivate audiences through powerful editing and visual rhythm.</p>
+      <div class="about-content">
+        <div class="about-text">
+          <h3>S-EDITS STUDIO</h3>
+          <p>I create attention-grabbing video edits that are clean, fast, and emotionally engaging. From raw footage to final delivery, every frame is crafted for impact.</p>
+          <p>Available for brand promos, social reels, wedding edits, corporate videos, and creator content.</p>
+          <div class="skills">
+            <span class="skill-tag">Adobe Premiere Pro</span>
+            <span class="skill-tag">After Effects</span>
+            <span class="skill-tag">DaVinci Resolve</span>
+            <span class="skill-tag">Color Grading</span>
+            <span class="skill-tag">Motion Graphics</span>
+            <span class="skill-tag">Sound Design</span>
+          </div>
+        </div>
+        <div>
+          <img src="./assets/logo.png" alt="S-EDITS STUDIO" style="width: 100%; max-width: 420px; border-radius: 18px; box-shadow: 0 18px 45px rgba(0,0,0,.2); margin: 0 auto; display: block;" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="reveal">
+      <h2 class="section-title">Portfolio</h2>
+      <p class="section-subtitle">Selected samples from recent editing work</p>
+      <p class="hq-note">To see these samples in high quality, visit my Instagram page: <a href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">@shekhar.__17</a></p>
+      <div class="portfolio-carousel">
+        <div class="carousel-controls">
+          <button type="button" class="carousel-btn" id="portfolioPrev" aria-label="Previous samples"><i class="fas fa-chevron-left"></i></button>
+          <button type="button" class="carousel-btn" id="portfolioNext" aria-label="Next samples"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      <div class="portfolio-grid" id="portfolioTrack">
+        <div class="portfolio-item wide-item">
+          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 01" />
+          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <div class="play-overlay"><i class="fas fa-play"></i></div>
+          <div class="portfolio-caption">Sample Edit 01 | Cinematic Reel</div>
+        </div>
+        <div class="portfolio-item">
+          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 02" />
+          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <div class="play-overlay"><i class="fas fa-play"></i></div>
+          <div class="portfolio-caption">Sample Edit 02 | Social Media Cut</div>
+        </div>
+        <div class="portfolio-item">
+          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 03" />
+          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <div class="play-overlay"><i class="fas fa-play"></i></div>
+          <div class="portfolio-caption">Sample Edit 03 | Music Beat Sync</div>
+        </div>
+        <div class="portfolio-item">
+          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 04" />
+          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <div class="play-overlay"><i class="fas fa-play"></i></div>
+          <div class="portfolio-caption">Sample Edit 04 | Motion Highlight</div>
+        </div>
+        <div class="portfolio-item wide-item">
+          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 05" />
+          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <div class="play-overlay"><i class="fas fa-play"></i></div>
+          <div class="portfolio-caption">Sample Edit 05 | Creative Transition</div>
+        </div>
+        <div class="portfolio-item">
+          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 06" />
+          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <div class="play-overlay"><i class="fas fa-play"></i></div>
+          <div class="portfolio-caption">Sample Edit 06 | AI Repair</div>
+        </div>
+        <div class="portfolio-item">
+          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 07" />
+          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <div class="play-overlay"><i class="fas fa-play"></i></div>
+          <div class="portfolio-caption">Sample Edit 07 | Social Highlight</div>
+        </div>
+        <div class="portfolio-item wide-item">
+          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 08" />
+          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <div class="play-overlay"><i class="fas fa-play"></i></div>
+          <div class="portfolio-caption">Sample Edit 08 | Creative Cut</div>
+        </div>
+        <div class="portfolio-item">
+          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 09" />
+          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <div class="play-overlay"><i class="fas fa-play"></i></div>
+          <div class="portfolio-caption">Sample Edit 09 | Motion Flow</div>
+        </div>
+        <div class="portfolio-item">
+          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 10" />
+          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <div class="play-overlay"><i class="fas fa-play"></i></div>
+          <div class="portfolio-caption">Sample Edit 10 | Story Sequence</div>
+        </div>
+        <div class="portfolio-item wide-item">
+          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 11" />
+          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <div class="play-overlay"><i class="fas fa-play"></i></div>
+          <div class="portfolio-caption">Sample Edit 11 | Visual Rhythm</div>
+        </div>
+        <div class="portfolio-item">
+          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 12" />
+          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <div class="play-overlay"><i class="fas fa-play"></i></div>
+          <div class="portfolio-caption">Sample Edit 12 | Dynamic Reel</div>
+        </div>
+        <div class="portfolio-item">
+          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 13" />
+          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <div class="play-overlay"><i class="fas fa-play"></i></div>
+          <div class="portfolio-caption">Sample Edit 13 | Fast Transition</div>
+        </div>
+        <div class="portfolio-item">
+          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 14" />
+          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <div class="play-overlay"><i class="fas fa-play"></i></div>
+          <div class="portfolio-caption">Sample Edit 14 | Showcase Clip</div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <img class="floating-logo three" src="./assets/logo.png" alt="" aria-hidden="true" />
+    <div class="reveal">
+      <h2 class="section-title" style="color: white;">Get In Touch</h2>
+      <div class="contact-content">
+        <div class="contact-info">
+          <h3>Let's Create Something Amazing</h3>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <div><strong>Email</strong><br />shekharkumarhonhey123@gmail.com</div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <div><strong>Phone</strong><br />+91 8294795794</div>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <div><strong>Location</strong><br />India</div>
+          </div>
+          <div class="social-links">
+            <h4>Follow Me</h4>
+            <div class="contact-item">
+              <i class="fab fa-instagram"></i>
+              <div><strong>Instagram</strong><br /><a href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">@shekhar.__17</a></div>
+            </div>
+            <div class="contact-item">
+              <i class="fab fa-facebook-f"></i>
+              <div><strong>Facebook</strong><br /><a href="https://www.facebook.com/search/top?q=shekhar%20kumar" target="_blank" rel="noopener noreferrer">shekhar kumar</a></div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks! Your message has been received.');">
+          <div class="form-group"><input type="text" placeholder="Your Name" required /></div>
+          <div class="form-group"><input type="email" placeholder="Your Email" required /></div>
+          <div class="form-group"><input type="text" placeholder="Subject" /></div>
+          <div class="form-group"><textarea placeholder="Your Message"></textarea></div>
+          <button type="submit" class="cta-button" style="width: 100%; margin-top: 1rem;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 S-EDITS STUDIO. All rights reserved. | Video Editor Portfolio</p>
+  </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    const toggleMenu = () => navLinks.classList.toggle('active');
+    hamburger.addEventListener('click', toggleMenu);
+    hamburger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu();
+      }
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        navLinks.classList.remove('active');
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      header.style.background = window.scrollY > 100 ? 'rgba(0, 0, 0, 0.98)' : 'rgba(0, 0, 0, 0.95)';
+
+      const scrollIndicator = document.getElementById('scrollIndicator');
+      const scrollTop = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0;
+      scrollIndicator.style.width = progress + '%';
+    });
+
+    document.querySelectorAll('.portfolio-item').forEach(item => {
+      item.addEventListener('touchstart', () => {
+        item.classList.add('tapped');
+      }, { passive: true });
+      item.addEventListener('touchend', () => {
+        item.classList.remove('tapped');
+      });
+
+      item.addEventListener('mousemove', (e) => {
+        const rect = item.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        const rotateY = (x - 0.5) * 8;
+        const rotateX = (0.5 - y) * 8;
+        item.style.transform = `translateY(-6px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      item.addEventListener('mouseleave', () => {
+        item.style.transform = '';
+      });
+    });
+
+    const portfolioTrack = document.getElementById('portfolioTrack');
+    const portfolioNext = document.getElementById('portfolioNext');
+    const portfolioPrev = document.getElementById('portfolioPrev');
+    let autoRotateTimer;
+
+    const cardStep = () => {
+      const firstCard = portfolioTrack.querySelector('.portfolio-item');
+      return firstCard ? firstCard.getBoundingClientRect().width + 20 : 360;
+    };
+
+    const rotateNext = () => {
+      const step = cardStep();
+      const maxLeft = portfolioTrack.scrollWidth - portfolioTrack.clientWidth - 5;
+      if (portfolioTrack.scrollLeft >= maxLeft) {
+        portfolioTrack.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        portfolioTrack.scrollBy({ left: step, behavior: 'smooth' });
+      }
+    };
+
+    const rotatePrev = () => {
+      const step = cardStep();
+      if (portfolioTrack.scrollLeft <= 10) {
+        portfolioTrack.scrollTo({ left: portfolioTrack.scrollWidth, behavior: 'smooth' });
+      } else {
+        portfolioTrack.scrollBy({ left: -step, behavior: 'smooth' });
+      }
+    };
+
+    const startAutoRotate = () => {
+      clearInterval(autoRotateTimer);
+      autoRotateTimer = setInterval(rotateNext, 4200);
+    };
+
+    const stopAutoRotate = () => clearInterval(autoRotateTimer);
+
+    portfolioNext.addEventListener('click', () => { rotateNext(); startAutoRotate(); });
+    portfolioPrev.addEventListener('click', () => { rotatePrev(); startAutoRotate(); });
+    portfolioTrack.addEventListener('mouseenter', stopAutoRotate);
+    portfolioTrack.addEventListener('mouseleave', startAutoRotate);
+    portfolioTrack.addEventListener('touchstart', stopAutoRotate, { passive: true });
+    portfolioTrack.addEventListener('touchend', startAutoRotate);
+    startAutoRotate();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
