@@ -130,19 +130,6 @@
     section { padding: 100px 0; max-width: 1200px; margin: 0 auto; padding-left: 2rem; padding-right: 2rem; scroll-margin-top: 100px; }
     .section-title { text-align: center; font-size: 3rem; font-weight: 700; margin-bottom: 1.2rem; color: #222; }
     .section-subtitle { text-align: center; font-size: 1.1rem; color: #666; max-width: 700px; margin: 0 auto 3rem; }
-    .hq-note {
-      text-align: center;
-      margin: -1.8rem auto 2rem;
-      color: #0d3b4d;
-      font-weight: 600;
-      font-size: 0.98rem;
-    }
-    .hq-note a {
-      color: var(--accent-deep);
-      text-decoration: none;
-      border-bottom: 1px dashed rgba(23, 156, 200, 0.6);
-    }
-    .hq-note a:hover { color: #0e6f8f; }
 
     .about { background: #f8fbfc; }
     .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
@@ -190,15 +177,6 @@
     .portfolio-item:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.2); }
 
     .portfolio-video { width: 100%; height: 100%; object-fit: cover; }
-    .sample-thumb {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: saturate(1.05) contrast(1.05);
-      transform: scale(1.03);
-      transition: transform 0.35s ease;
-    }
-    .portfolio-item:hover .sample-thumb { transform: scale(1.08); }
     .play-overlay {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
       background: rgba(35, 184, 232, 0.9); width: 80px; height: 80px; border-radius: 50%;
@@ -219,21 +197,6 @@
       pointer-events: none;
       z-index: 2;
     }
-    .sample-link {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      z-index: 3;
-      padding: 0.35rem 0.7rem;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      color: #fff;
-      text-decoration: none;
-      background: rgba(0, 0, 0, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(6px);
-    }
-    .sample-link:hover { background: rgba(35, 184, 232, 0.7); }
     .portfolio-item.tapped {
       transform: scale(0.98);
       box-shadow: 0 12px 26px rgba(0,0,0,0.25);
@@ -400,7 +363,6 @@
     <div class="reveal">
       <h2 class="section-title">Portfolio</h2>
       <p class="section-subtitle">Selected samples from recent editing work</p>
-      <p class="hq-note">To see these samples in high quality, visit my Instagram page: <a href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">@shekhar.__17</a></p>
       <div class="portfolio-carousel">
         <div class="carousel-controls">
           <button type="button" class="carousel-btn" id="portfolioPrev" aria-label="Previous samples"><i class="fas fa-chevron-left"></i></button>
@@ -408,86 +370,100 @@
         </div>
       <div class="portfolio-grid" id="portfolioTrack">
         <div class="portfolio-item wide-item">
-          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 01" />
-          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <video class="portfolio-video" controls playsinline preload="metadata">
+            <source src="./assets/webvideos/sample1.mp4" type="video/mp4" />
+          </video>
           <div class="play-overlay"><i class="fas fa-play"></i></div>
           <div class="portfolio-caption">Sample Edit 01 | Cinematic Reel</div>
         </div>
         <div class="portfolio-item">
-          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 02" />
-          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <video class="portfolio-video" controls playsinline preload="metadata">
+            <source src="./assets/webvideos/sample2.mp4" type="video/mp4" />
+          </video>
           <div class="play-overlay"><i class="fas fa-play"></i></div>
           <div class="portfolio-caption">Sample Edit 02 | Social Media Cut</div>
         </div>
         <div class="portfolio-item">
-          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 03" />
-          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <video class="portfolio-video" controls playsinline preload="metadata">
+            <source src="./assets/webvideos/sample3.mp4" type="video/mp4" />
+          </video>
           <div class="play-overlay"><i class="fas fa-play"></i></div>
           <div class="portfolio-caption">Sample Edit 03 | Music Beat Sync</div>
         </div>
         <div class="portfolio-item">
-          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 04" />
-          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <video class="portfolio-video" controls playsinline preload="metadata">
+            <source src="./assets/webvideos/sample4.mp4" type="video/mp4" />
+          </video>
           <div class="play-overlay"><i class="fas fa-play"></i></div>
           <div class="portfolio-caption">Sample Edit 04 | Motion Highlight</div>
         </div>
         <div class="portfolio-item wide-item">
-          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 05" />
-          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <video class="portfolio-video" controls playsinline preload="metadata">
+            <source src="./assets/webvideos/sample5.mp4" type="video/mp4" />
+          </video>
           <div class="play-overlay"><i class="fas fa-play"></i></div>
           <div class="portfolio-caption">Sample Edit 05 | Creative Transition</div>
         </div>
         <div class="portfolio-item">
-          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 06" />
-          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <video class="portfolio-video" controls playsinline preload="metadata">
+            <source src="./assets/webvideos/sample6.mp4" type="video/mp4" />
+          </video>
           <div class="play-overlay"><i class="fas fa-play"></i></div>
           <div class="portfolio-caption">Sample Edit 06 | AI Repair</div>
         </div>
         <div class="portfolio-item">
-          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 07" />
-          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <video class="portfolio-video" controls playsinline preload="metadata">
+            <source src="./assets/webvideos/sample7.mp4" type="video/mp4" />
+          </video>
           <div class="play-overlay"><i class="fas fa-play"></i></div>
           <div class="portfolio-caption">Sample Edit 07 | Social Highlight</div>
         </div>
         <div class="portfolio-item wide-item">
-          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 08" />
-          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <video class="portfolio-video" controls playsinline preload="metadata">
+            <source src="./assets/webvideos/sample8.mp4" type="video/mp4" />
+          </video>
           <div class="play-overlay"><i class="fas fa-play"></i></div>
           <div class="portfolio-caption">Sample Edit 08 | Creative Cut</div>
         </div>
         <div class="portfolio-item">
-          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 09" />
-          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <video class="portfolio-video" controls playsinline preload="metadata">
+            <source src="./assets/webvideos/sample9.mp4" type="video/mp4" />
+          </video>
           <div class="play-overlay"><i class="fas fa-play"></i></div>
           <div class="portfolio-caption">Sample Edit 09 | Motion Flow</div>
         </div>
         <div class="portfolio-item">
-          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 10" />
-          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <video class="portfolio-video" controls playsinline preload="metadata">
+            <source src="./assets/webvideos/sample10.mp4" type="video/mp4" />
+          </video>
           <div class="play-overlay"><i class="fas fa-play"></i></div>
           <div class="portfolio-caption">Sample Edit 10 | Story Sequence</div>
         </div>
         <div class="portfolio-item wide-item">
-          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 11" />
-          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <video class="portfolio-video" controls playsinline preload="metadata">
+            <source src="./assets/webvideos/sample11.mp4" type="video/mp4" />
+          </video>
           <div class="play-overlay"><i class="fas fa-play"></i></div>
           <div class="portfolio-caption">Sample Edit 11 | Visual Rhythm</div>
         </div>
         <div class="portfolio-item">
-          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 12" />
-          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <video class="portfolio-video" controls playsinline preload="metadata">
+            <source src="./assets/webvideos/sample12.mp4" type="video/mp4" />
+          </video>
           <div class="play-overlay"><i class="fas fa-play"></i></div>
           <div class="portfolio-caption">Sample Edit 12 | Dynamic Reel</div>
         </div>
         <div class="portfolio-item">
-          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 13" />
-          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <video class="portfolio-video" controls playsinline preload="metadata">
+            <source src="./assets/webvideos/sample13.mp4" type="video/mp4" />
+          </video>
           <div class="play-overlay"><i class="fas fa-play"></i></div>
           <div class="portfolio-caption">Sample Edit 13 | Fast Transition</div>
         </div>
         <div class="portfolio-item">
-          <img class="sample-thumb" src="./assets/logo.png" alt="Sample Edit 14" />
-          <a class="sample-link" href="https://instagram.com/shekhar.__17" target="_blank" rel="noopener noreferrer">Watch on Instagram</a>
+          <video class="portfolio-video" controls playsinline preload="metadata">
+            <source src="./assets/webvideos/sample14.mp4" type="video/mp4" />
+          </video>
           <div class="play-overlay"><i class="fas fa-play"></i></div>
           <div class="portfolio-caption">Sample Edit 14 | Showcase Clip</div>
         </div>
@@ -655,4 +631,5 @@
   </script>
 </body>
 </html>
+
 
